@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-c82776a7ba3d3a78bf6a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ScaraRobot",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ScaraRobot::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScaraRobot-Debug-e0de7027ca5b01d4d745.json",
+					"name" : "ScaraRobot",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ScaraRobot_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScaraRobot_autogen-Debug-20ad64f9788005f7c164.json",
+					"name" : "ScaraRobot_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ScaraRobot_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScaraRobot_autogen_timestamp_deps-Debug-8ed287597fae9219e76f.json",
+					"name" : "ScaraRobot_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/DevPro/GUI/cloneScara/ScaraRobot/build/Desktop_x86_windows_msys_pe_64bit-Debug",
+		"source" : "D:/DevPro/GUI/cloneScara/ScaraRobot"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

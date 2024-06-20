@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ScaraRobot</class>
+ <widget class="QMainWindow" name="ScaraRobot">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1558</width>
+    <height>736</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ScaraRobot</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #2a5298; /* Màu nền cố định */
+    border-radius: 10px;
+}
+
+QLabel {
+    color: #ffffff;
+    font: bold 14px;
+}
+
+QPushButton {
+    background-color:#4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+QPushButton:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>0</y>
+      <width>301</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLabel {
+    color: #ffffff;
+    font: bold 24px; 
+}</string>
+    </property>
+    <property name="text">
+     <string>SCARA ROBOT CONTROL</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>120</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #ffffff;
+    font: bold 16px; /* Đổi kích thước chữ ở đây */
+}</string>
+    </property>
+    <property name="text">
+     <string>FORWARD KINEMATICS</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>110</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #ffffff;
+    font: bold 16px;
+}</string>
+    </property>
+    <property name="text">
+     <string>INVERSE KINEMATICS</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>31</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>J1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>J2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>J3</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Z</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>550</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #ffffff;
+    font: bold 20px; 
+}</string>
+    </property>
+    <property name="text">
+     <string>Speed</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>320</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #ffffff;
+    font: bold 20px; 
+}</string>
+    </property>
+    <property name="text">
+     <string>GRIPPER</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>290</y>
+      <width>301</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QSlider" name="j2Slider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+        border: 1px solid #999999;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+    }
+QSlider::handle:horizontal {
+       background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+           stop: 0 #b4b4b4, stop: 1 #8f8f8f);
+       border: 1px solid #5c5c5c;
+        width: 20px;
+        height: 20px;
+        margin: -6px 0;/* move handle upwards */
+        border-radius: 10px;
+    }
+
+    QSlider::sub-page:horizontal {
+        background: #66b3ff;
+        border: 1px solid #4a90e2;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+   QSlider::add-page:horizontal {
+        background: #e0e0e0;
+        border: 1px solid #999999;
+        height: 8px;
+        border-radius: 4px;
+    }</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="j2SubButton">
+         <property name="text">
+          <string>JOG-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="j2DegreeLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="j2SumButton">
+         <property name="text">
+          <string>JOG+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>500</y>
+      <width>301</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <widget class="QSlider" name="zSlider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+        border: 1px solid #999999;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+    }
+QSlider::handle:horizontal {
+       background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+           stop: 0 #b4b4b4, stop: 1 #8f8f8f);
+       border: 1px solid #5c5c5c;
+        width: 20px;
+        height: 20px;
+        margin: -6px 0;/* move handle upwards */
+        border-radius: 10px;
+    }
+
+    QSlider::sub-page:horizontal {
+        background: #66b3ff;
+        border: 1px solid #4a90e2;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+   QSlider::add-page:horizontal {
+        background: #e0e0e0;
+        border: 1px solid #999999;
+        height: 8px;
+        border-radius: 4px;
+    }</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="zSubButton">
+         <property name="text">
+          <string>JOG-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="zDegreeLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="zSumButton">
+         <property name="text">
+          <string>JOG+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>400</y>
+      <width>301</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QSlider" name="j3Slider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+        border: 1px solid #999999;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+    }
+QSlider::handle:horizontal {
+       background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+           stop: 0 #b4b4b4, stop: 1 #8f8f8f);
+       border: 1px solid #5c5c5c;
+        width: 20px;
+        height: 20px;
+        margin: -6px 0;/* move handle upwards */
+        border-radius: 10px;
+    }
+
+    QSlider::sub-page:horizontal {
+        background: #66b3ff;
+        border: 1px solid #4a90e2;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+   QSlider::add-page:horizontal {
+        background: #e0e0e0;
+        border: 1px solid #999999;
+        height: 8px;
+        border-radius: 4px;
+    }</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="j3SubButton">
+         <property name="text">
+          <string>JOG-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="j3DegreeLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="j3SumButton">
+         <property name="text">
+          <string>JOG+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>180</y>
+      <width>301</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QSlider" name="j1Slider">
+       <property name="styleSheet">
+        <string notr="true">QSlider::groove:horizontal {
+        border: 1px solid #999999;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+    }
+QSlider::handle:horizontal {
+       background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+           stop: 0 #b4b4b4, stop: 1 #8f8f8f);
+       border: 1px solid #5c5c5c;
+        width: 20px;
+        height: 20px;
+        margin: -6px 0;/* move handle upwards */
+        border-radius: 10px;
+    }
+
+    QSlider::sub-page:horizontal {
+        background: #66b3ff;
+        border: 1px solid #4a90e2;
+        height: 8px;
+        border-radius: 4px;
+    }
+
+   QSlider::add-page:horizontal {
+        background: #e0e0e0;
+        border: 1px solid #999999;
+        height: 8px;
+        border-radius: 4px;
+    }</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="j1SubButton">
+         <property name="text">
+          <string>JOG-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="j1DegreeLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="j1SumButton">
+         <property name="text">
+          <string>JOG+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QSpinBox" name="ySpinbox">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>170</y>
+      <width>81</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="zSpinbox">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>170</y>
+      <width>81</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="speedSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>580</y>
+      <width>91</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+    </property>
+    <property name="maximum">
+     <number>6500</number>
+    </property>
+    <property name="value">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="homeButton">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>480</y>
+      <width>181</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>HOME</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>550</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    color: #ffffff;
+    font: bold 20px; 
+}</string>
+    </property>
+    <property name="text">
+     <string>Acceleration</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="AcclerationSpinBox">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>580</y>
+      <width>91</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+    </property>
+    <property name="maximum">
+     <number>4500</number>
+    </property>
+    <property name="value">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>170</y>
+      <width>16</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">	QLabel {
+    color: #ffffff;
+    font: bold 20px; /* Đổi kích thước chữ ở đây */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Z</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>170</y>
+      <width>16</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">	QLabel {
+    color: #ffffff;
+    font: bold 20px; /* Đổi kích thước chữ ở đây */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="xSpinbox">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>170</y>
+      <width>81</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>502</x>
+      <y>172</y>
+      <width>16</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">	QLabel {
+    color: #ffffff;
+    font: bold 20px; /* Đổi kích thước chữ ở đây */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>410</y>
+      <width>181</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>SAVE POSTION</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="runButton">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>410</y>
+      <width>181</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>RUN PROGRAM</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="movePostionButton">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>230</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>MOVE TO POSTION</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>20</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>161</y>
+      <width>501</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget { 
+        background-color: #ffffff; 
+        alternate-background-color: #f0f0f0; 
+        selection-background-color: #a8d4ff; 
+        selection-color: #000000; 
+        border: 1px solid #d3d3d3; 
+        gridline-color: #d3d3d3; 
+    } 
+    QTableWidget::item { 
+        padding: 5px; 
+        border-bottom: 1px solid #d3d3d3; 
+    } 
+    QHeaderView::section { 
+        background-color: #e0e0e0; 
+        color: #333333; 
+        padding: 5px; 
+        border: 1px solid #d3d3d3; 
+    }</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>J1</string>
+     </property>
+     <property name="icon">
+      <iconset theme="accessories-calculator"/>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>J2</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>J3</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Z</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>GRIPPER</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="onOffButton">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>350</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ON</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearAllButton">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>480</y>
+      <width>151</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CLEAR ALL</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>480</y>
+      <width>151</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CLEAR </string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>390</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Row count:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="rowCountLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1120</x>
+      <y>390</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>Row running:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="rowRunningLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="emergencyButton">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>630</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>EMERGENCY</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1290</x>
+      <y>380</y>
+      <width>97</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Loop</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="loopSpinBox">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox {
+    background-color: #f0f0f0; /* Màu nền */
+    border: 2px solid #555555; /* Viền */
+    border-radius: 5px; /* Góc bo tròn */
+    padding: 2px 5px; /* Đệm nội dung */
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+    width: 16px; /* Chiều rộng nút */
+    border-width: 1px; /* Độ dày viền */
+}
+</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1558</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_Open"/>
+    <addaction name="action_CLose"/>
+    <addaction name="actionExport_file"/>
+    <addaction name="actionImport_file"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Open">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_CLose">
+   <property name="text">
+    <string>&amp;Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionExport_file">
+   <property name="text">
+    <string>Export file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionImport_file">
+   <property name="text">
+    <string>Import file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
