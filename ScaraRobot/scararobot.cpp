@@ -1,4 +1,4 @@
-        #include "scararobot.h"
+  #include "scararobot.h"
 #include "./ui_scararobot.h"
 #include <QFile>
 #include <QFileDialog>
@@ -10,6 +10,7 @@ ScaraRobot::ScaraRobot(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ScaraRobot)
     , isOn(false)  // Khởi tạo trạng thái ban đầu là Off
+    , isRunning(false)
 {
     ui->setupUi(this);
     esp32_is_available = false; // Initially set to false
@@ -73,6 +74,7 @@ ScaraRobot::ScaraRobot(QWidget *parent)
         // Give error message if not available
         QMessageBox::warning(this, "Port error", "Couldn't find the board!");
     }
+
 }
 
 ScaraRobot::~ScaraRobot()
@@ -392,57 +394,94 @@ void ScaraRobot::resetRowColor(int row) {
     qDebug() << "Reset color for row:" << row;
 }
 
+void ScaraRobot::sendCommandAndWait(const QString &command)
+{
+    if (esp32->isOpen() && esp32->isWritable()) {
+        esp32->write(command.toUtf8());
+        qDebug() << "Sent to ESP32: " << command;
+
+        if (!esp32->waitForBytesWritten(3000)) { // Đợi tối đa 3 giây cho đến khi dữ liệu được ghi
+            qDebug() << "Timeout while waiting for ESP32 to process command.";
+        }
+    } else {
+        qDebug() << "ESP32 not open or not writable";
+    }
+}
+void ScaraRobot::handleSerialData()
+{
+    while (esp32->canReadLine()) {
+        QByteArray data = esp32->readLine().trimmed();
+        if (data == "DONE") {
+            qDebug() << "Command done";
+            commandCompleted = true;
+            emit commandDone();
+        }
+    }
+}
+
+
+
 void ScaraRobot::on_runButton_clicked() {
     if (esp32->isOpen() && esp32->isWritable()) {
         int rowCount = ui->tableWidget->rowCount();
-        int loopCount = ui->loopSpinBox->value(); // Lấy giá trị từ loopSpinBox
+        int loopCount = ui->loopSpinBox->value(); // Get the value from loopSpinBox
 
-        // Cập nhật nhãn tổng số lệnh
+        // Update the total commands label
         ui->rowCountLabel->setText(QString::number(rowCount));
 
-        for (int loop = 0; loop < loopCount; ++loop) { // Vòng lặp bên ngoài để lặp lại chuỗi lệnh
+        for (int loop = 0; loop < loopCount; ++loop) { // Outer loop to repeat the sequence of commands
             for (int row = 0; row < rowCount; ++row) {
-                // Tô sáng dòng hiện tại
+                // Set status to true
+                isRunning = true;
+
+                // Highlight the current row
                 highlightRow(row);
 
-                // Lấy giá trị từ bảng
+                // Get the values from the table
                 QString j1Value = ui->tableWidget->item(row, 0)->text();
                 QString j2Value = ui->tableWidget->item(row, 1)->text();
                 QString j3Value = ui->tableWidget->item(row, 2)->text();
                 QString zValue = ui->tableWidget->item(row, 3)->text();
                 QString onOffState = ui->tableWidget->item(row, 4)->text();
 
-                // Gửi lệnh đến ESP32
+                // Send commands to ESP32
                 esp32->write(QString("J1:%1\n").arg(j1Value).toUtf8());
                 esp32->write(QString("J2:%1\n").arg(j2Value).toUtf8());
                 esp32->write(QString("J3:%1\n").arg(j3Value).toUtf8());
                 esp32->write(QString("Z:%1\n").arg(zValue).toUtf8());
 
-                // Chuyển đổi trạng thái onOffState thành lệnh cụ thể
+                // Convert onOffState to specific command
                 QString relayCommand = (onOffState == "ON") ? "RELAY:ON\n" : "RELAY:OFF\n";
                 esp32->write(relayCommand.toUtf8());
 
                 qDebug() << "Sent commands for row" << row;
 
-                // Cập nhật nhãn lệnh hiện tại
+                // Update the current command label
                 ui->rowRunningLabel->setText(QString::number(row + 1));
 
-                // Chờ một lúc để hiển thị dòng đang được xử lý
+                // Chờ phản hồi từ ESP32
                 QEventLoop loop;
-                QTimer::singleShot(1000, &loop, &QEventLoop::quit); // Chờ 1 giây
-                loop.exec();
+                commandCompleted = false; // Đặt lại trạng thái lệnh
+                connect(this, &ScaraRobot::commandDone, &loop, &QEventLoop::quit);
+                while (!commandCompleted) {
+                    loop.exec();
+                }
 
-                // Đặt lại màu của dòng đã xử lý
+                // Reset the color of the processed row
                 resetRowColor(row);
+
+                // Set status to false
+                isRunning = false;
             }
         }
 
-        // Đặt lại nhãn lệnh hiện tại sau khi hoàn tất
-        ui->rowRunningLabel->setText(" None");
+        // Reset the current command label after completion
+        ui->rowRunningLabel->setText("None");
     } else {
-        qDebug() << "ESP32 không mở hoặc không thể ghi";
+        qDebug() << "ESP32 is not open or writable";
     }
 }
+
 
 
 //ĐỘNG HỌC THUẬN
@@ -513,11 +552,6 @@ void ScaraRobot::on_emergencyButton_clicked()
     }
 }
 
-
-void ScaraRobot::on_loopButton_clicked()
-{
-
-}
 
 
 void ScaraRobot::on_zSubButton_clicked()

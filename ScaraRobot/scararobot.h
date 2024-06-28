@@ -1,7 +1,7 @@
     #ifndef SCARAROBOT_H
     #define SCARAROBOT_H
 
-    #include <cmath>
+
     #include <QMainWindow>
     #include <QtSerialPort>
     #include <QSerialPortInfo>
@@ -70,17 +70,21 @@
 
         void on_emergencyButton_clicked();
 
-        void on_loopButton_clicked();
+        // void on_loopButton_clicked();
 
         void on_zSubButton_clicked();
 
-        void readSerialData();
+        // void readSerialData();
 
         void on_zSumButton_clicked();
 
-        void moveToNextCommand();
+        void sendCommandAndWait(const QString &command);
+    // signals:
+    //     void movementFinished();
+
+
     signals:
-        void proceedToNextCommand();
+        void commandDone();
     private:
         Ui::ScaraRobot *ui;
         QSerialPort *esp32;
@@ -89,19 +93,23 @@
         QString esp32_port_name;
         bool esp32_is_available;
         bool isOn;  // Biến trạng thái của nút On/Off
-
+        bool isRunning;
+        bool commandCompleted;
+        void handleSerialData();
         void calculateForwardKinematics(double theta1, double theta2, double& x, double& y);
         void calculateInverseKinematics(double x, double y, double& theta1, double& theta2);
 
         void highlightRow(int row);
         void resetRowColor(int row);
 
+        // bool isMoving;
+
         // QByteArray serialBuffer;
 
         const double L1 = 120.0; // Link 1 length
         const double L2 = 320.0; // Link 2 length
 
-
+        // QLabel *statusLabel;
 
     };
 

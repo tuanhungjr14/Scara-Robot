@@ -103,11 +103,12 @@ public:
     QLabel *label_15;
     QLabel *rowRunningLabel;
     QPushButton *emergencyButton;
-    QWidget *widget;
+    QWidget *layoutWidget4;
     QHBoxLayout *horizontalLayout_8;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_16;
     QSpinBox *loopSpinBox;
+    QLabel *statusLabel;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -726,15 +727,15 @@ public:
         emergencyButton->setObjectName("emergencyButton");
         emergencyButton->setGeometry(QRect(620, 630, 191, 81));
         emergencyButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 0, 0);"));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(1290, 380, 97, 32));
-        horizontalLayout_8 = new QHBoxLayout(widget);
+        layoutWidget4 = new QWidget(centralwidget);
+        layoutWidget4->setObjectName("layoutWidget4");
+        layoutWidget4->setGeometry(QRect(1290, 380, 97, 32));
+        horizontalLayout_8 = new QHBoxLayout(layoutWidget4);
         horizontalLayout_8->setObjectName("horizontalLayout_8");
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        label_16 = new QLabel(widget);
+        label_16 = new QLabel(layoutWidget4);
         label_16->setObjectName("label_16");
 
         horizontalLayout_7->addWidget(label_16);
@@ -742,7 +743,7 @@ public:
 
         horizontalLayout_8->addLayout(horizontalLayout_7);
 
-        loopSpinBox = new QSpinBox(widget);
+        loopSpinBox = new QSpinBox(layoutWidget4);
         loopSpinBox->setObjectName("loopSpinBox");
         loopSpinBox->setStyleSheet(QString::fromUtf8("QSpinBox {\n"
 "    background-color: #f0f0f0; /* M\303\240u n\341\273\201n */\n"
@@ -768,6 +769,9 @@ public:
 
         horizontalLayout_8->addWidget(loopSpinBox);
 
+        statusLabel = new QLabel(centralwidget);
+        statusLabel->setObjectName("statusLabel");
+        statusLabel->setGeometry(QRect(380, 180, 63, 20));
         ScaraRobot->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ScaraRobot);
         menubar->setObjectName("menubar");
@@ -857,6 +861,7 @@ public:
         rowRunningLabel->setText(QString());
         emergencyButton->setText(QCoreApplication::translate("ScaraRobot", "EMERGENCY", nullptr));
         label_16->setText(QCoreApplication::translate("ScaraRobot", "Loop", nullptr));
+        statusLabel->setText(QString());
         menuFile->setTitle(QCoreApplication::translate("ScaraRobot", "File", nullptr));
     } // retranslateUi
 

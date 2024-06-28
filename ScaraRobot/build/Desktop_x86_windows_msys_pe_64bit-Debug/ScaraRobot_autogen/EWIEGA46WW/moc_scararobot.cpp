@@ -41,7 +41,7 @@ namespace {
 struct qt_meta_stringdata_CLASSScaraRobotENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSScaraRobotENDCLASS = QtMocHelpers::stringData(
     "ScaraRobot",
-    "proceedToNextCommand",
+    "commandDone",
     "",
     "on_zSlider_valueChanged",
     "value",
@@ -68,17 +68,16 @@ static constexpr auto qt_meta_stringdata_CLASSScaraRobotENDCLASS = QtMocHelpers:
     "on_AcclerationSpinBox_valueChanged",
     "on_runButton_clicked",
     "on_emergencyButton_clicked",
-    "on_loopButton_clicked",
     "on_zSubButton_clicked",
-    "readSerialData",
     "on_zSumButton_clicked",
-    "moveToNextCommand"
+    "sendCommandAndWait",
+    "command"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSScaraRobotENDCLASS_t {
-    uint offsetsAndSizes[66];
+    uint offsetsAndSizes[64];
     char stringdata0[11];
-    char stringdata1[21];
+    char stringdata1[12];
     char stringdata2[1];
     char stringdata3[24];
     char stringdata4[6];
@@ -107,50 +106,48 @@ struct qt_meta_stringdata_CLASSScaraRobotENDCLASS_t {
     char stringdata27[27];
     char stringdata28[22];
     char stringdata29[22];
-    char stringdata30[15];
-    char stringdata31[22];
-    char stringdata32[18];
+    char stringdata30[19];
+    char stringdata31[8];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSScaraRobotENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSScaraRobotENDCLASS_t qt_meta_stringdata_CLASSScaraRobotENDCLASS = {
     {
         QT_MOC_LITERAL(0, 10),  // "ScaraRobot"
-        QT_MOC_LITERAL(11, 20),  // "proceedToNextCommand"
-        QT_MOC_LITERAL(32, 0),  // ""
-        QT_MOC_LITERAL(33, 23),  // "on_zSlider_valueChanged"
-        QT_MOC_LITERAL(57, 5),  // "value"
-        QT_MOC_LITERAL(63, 22),  // "on_j1SubButton_clicked"
-        QT_MOC_LITERAL(86, 22),  // "on_j1SumButton_clicked"
-        QT_MOC_LITERAL(109, 24),  // "on_j1Slider_valueChanged"
-        QT_MOC_LITERAL(134, 22),  // "on_j2SubButton_clicked"
-        QT_MOC_LITERAL(157, 22),  // "on_j2SumButton_clicked"
-        QT_MOC_LITERAL(180, 22),  // "on_j3SubButton_clicked"
-        QT_MOC_LITERAL(203, 22),  // "on_j3SumButton_clicked"
-        QT_MOC_LITERAL(226, 24),  // "on_j2Slider_valueChanged"
-        QT_MOC_LITERAL(251, 24),  // "on_j3Slider_valueChanged"
-        QT_MOC_LITERAL(276, 21),  // "on_saveButton_clicked"
-        QT_MOC_LITERAL(298, 22),  // "on_onOffButton_clicked"
-        QT_MOC_LITERAL(321, 22),  // "on_clearButton_clicked"
-        QT_MOC_LITERAL(344, 25),  // "on_clearAllButton_clicked"
-        QT_MOC_LITERAL(370, 24),  // "on_xSpinbox_valueChanged"
-        QT_MOC_LITERAL(395, 4),  // "arg1"
-        QT_MOC_LITERAL(400, 24),  // "on_ySpinbox_valueChanged"
-        QT_MOC_LITERAL(425, 24),  // "on_zSpinbox_valueChanged"
-        QT_MOC_LITERAL(450, 28),  // "on_movePostionButton_clicked"
-        QT_MOC_LITERAL(479, 21),  // "on_homeButton_clicked"
-        QT_MOC_LITERAL(501, 28),  // "on_speedSpinBox_valueChanged"
-        QT_MOC_LITERAL(530, 34),  // "on_AcclerationSpinBox_valueCh..."
-        QT_MOC_LITERAL(565, 20),  // "on_runButton_clicked"
-        QT_MOC_LITERAL(586, 26),  // "on_emergencyButton_clicked"
-        QT_MOC_LITERAL(613, 21),  // "on_loopButton_clicked"
-        QT_MOC_LITERAL(635, 21),  // "on_zSubButton_clicked"
-        QT_MOC_LITERAL(657, 14),  // "readSerialData"
-        QT_MOC_LITERAL(672, 21),  // "on_zSumButton_clicked"
-        QT_MOC_LITERAL(694, 17)   // "moveToNextCommand"
+        QT_MOC_LITERAL(11, 11),  // "commandDone"
+        QT_MOC_LITERAL(23, 0),  // ""
+        QT_MOC_LITERAL(24, 23),  // "on_zSlider_valueChanged"
+        QT_MOC_LITERAL(48, 5),  // "value"
+        QT_MOC_LITERAL(54, 22),  // "on_j1SubButton_clicked"
+        QT_MOC_LITERAL(77, 22),  // "on_j1SumButton_clicked"
+        QT_MOC_LITERAL(100, 24),  // "on_j1Slider_valueChanged"
+        QT_MOC_LITERAL(125, 22),  // "on_j2SubButton_clicked"
+        QT_MOC_LITERAL(148, 22),  // "on_j2SumButton_clicked"
+        QT_MOC_LITERAL(171, 22),  // "on_j3SubButton_clicked"
+        QT_MOC_LITERAL(194, 22),  // "on_j3SumButton_clicked"
+        QT_MOC_LITERAL(217, 24),  // "on_j2Slider_valueChanged"
+        QT_MOC_LITERAL(242, 24),  // "on_j3Slider_valueChanged"
+        QT_MOC_LITERAL(267, 21),  // "on_saveButton_clicked"
+        QT_MOC_LITERAL(289, 22),  // "on_onOffButton_clicked"
+        QT_MOC_LITERAL(312, 22),  // "on_clearButton_clicked"
+        QT_MOC_LITERAL(335, 25),  // "on_clearAllButton_clicked"
+        QT_MOC_LITERAL(361, 24),  // "on_xSpinbox_valueChanged"
+        QT_MOC_LITERAL(386, 4),  // "arg1"
+        QT_MOC_LITERAL(391, 24),  // "on_ySpinbox_valueChanged"
+        QT_MOC_LITERAL(416, 24),  // "on_zSpinbox_valueChanged"
+        QT_MOC_LITERAL(441, 28),  // "on_movePostionButton_clicked"
+        QT_MOC_LITERAL(470, 21),  // "on_homeButton_clicked"
+        QT_MOC_LITERAL(492, 28),  // "on_speedSpinBox_valueChanged"
+        QT_MOC_LITERAL(521, 34),  // "on_AcclerationSpinBox_valueCh..."
+        QT_MOC_LITERAL(556, 20),  // "on_runButton_clicked"
+        QT_MOC_LITERAL(577, 26),  // "on_emergencyButton_clicked"
+        QT_MOC_LITERAL(604, 21),  // "on_zSubButton_clicked"
+        QT_MOC_LITERAL(626, 21),  // "on_zSumButton_clicked"
+        QT_MOC_LITERAL(648, 18),  // "sendCommandAndWait"
+        QT_MOC_LITERAL(667, 7)   // "command"
     },
     "ScaraRobot",
-    "proceedToNextCommand",
+    "commandDone",
     "",
     "on_zSlider_valueChanged",
     "value",
@@ -177,11 +174,10 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSScaraRobotENDCLASS_t qt_meta_st
     "on_AcclerationSpinBox_valueChanged",
     "on_runButton_clicked",
     "on_emergencyButton_clicked",
-    "on_loopButton_clicked",
     "on_zSubButton_clicked",
-    "readSerialData",
     "on_zSumButton_clicked",
-    "moveToNextCommand"
+    "sendCommandAndWait",
+    "command"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -193,7 +189,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSScaraRobotENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      29,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -201,37 +197,35 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSScaraRobotENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  188,    2, 0x06,    1 /* Public */,
+       1,    0,  176,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    1,  189,    2, 0x08,    2 /* Private */,
-       5,    0,  192,    2, 0x08,    4 /* Private */,
-       6,    0,  193,    2, 0x08,    5 /* Private */,
-       7,    1,  194,    2, 0x08,    6 /* Private */,
-       8,    0,  197,    2, 0x08,    8 /* Private */,
-       9,    0,  198,    2, 0x08,    9 /* Private */,
-      10,    0,  199,    2, 0x08,   10 /* Private */,
-      11,    0,  200,    2, 0x08,   11 /* Private */,
-      12,    1,  201,    2, 0x08,   12 /* Private */,
-      13,    1,  204,    2, 0x08,   14 /* Private */,
-      14,    0,  207,    2, 0x08,   16 /* Private */,
-      15,    0,  208,    2, 0x08,   17 /* Private */,
-      16,    0,  209,    2, 0x08,   18 /* Private */,
-      17,    0,  210,    2, 0x08,   19 /* Private */,
-      18,    1,  211,    2, 0x08,   20 /* Private */,
-      20,    1,  214,    2, 0x08,   22 /* Private */,
-      21,    1,  217,    2, 0x08,   24 /* Private */,
-      22,    0,  220,    2, 0x08,   26 /* Private */,
-      23,    0,  221,    2, 0x08,   27 /* Private */,
-      24,    1,  222,    2, 0x08,   28 /* Private */,
-      25,    1,  225,    2, 0x08,   30 /* Private */,
-      26,    0,  228,    2, 0x08,   32 /* Private */,
-      27,    0,  229,    2, 0x08,   33 /* Private */,
-      28,    0,  230,    2, 0x08,   34 /* Private */,
-      29,    0,  231,    2, 0x08,   35 /* Private */,
-      30,    0,  232,    2, 0x08,   36 /* Private */,
-      31,    0,  233,    2, 0x08,   37 /* Private */,
-      32,    0,  234,    2, 0x08,   38 /* Private */,
+       3,    1,  177,    2, 0x08,    2 /* Private */,
+       5,    0,  180,    2, 0x08,    4 /* Private */,
+       6,    0,  181,    2, 0x08,    5 /* Private */,
+       7,    1,  182,    2, 0x08,    6 /* Private */,
+       8,    0,  185,    2, 0x08,    8 /* Private */,
+       9,    0,  186,    2, 0x08,    9 /* Private */,
+      10,    0,  187,    2, 0x08,   10 /* Private */,
+      11,    0,  188,    2, 0x08,   11 /* Private */,
+      12,    1,  189,    2, 0x08,   12 /* Private */,
+      13,    1,  192,    2, 0x08,   14 /* Private */,
+      14,    0,  195,    2, 0x08,   16 /* Private */,
+      15,    0,  196,    2, 0x08,   17 /* Private */,
+      16,    0,  197,    2, 0x08,   18 /* Private */,
+      17,    0,  198,    2, 0x08,   19 /* Private */,
+      18,    1,  199,    2, 0x08,   20 /* Private */,
+      20,    1,  202,    2, 0x08,   22 /* Private */,
+      21,    1,  205,    2, 0x08,   24 /* Private */,
+      22,    0,  208,    2, 0x08,   26 /* Private */,
+      23,    0,  209,    2, 0x08,   27 /* Private */,
+      24,    1,  210,    2, 0x08,   28 /* Private */,
+      25,    1,  213,    2, 0x08,   30 /* Private */,
+      26,    0,  216,    2, 0x08,   32 /* Private */,
+      27,    0,  217,    2, 0x08,   33 /* Private */,
+      28,    0,  218,    2, 0x08,   34 /* Private */,
+      29,    0,  219,    2, 0x08,   35 /* Private */,
+      30,    1,  220,    2, 0x08,   36 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -262,9 +256,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSScaraRobotENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   31,
 
        0        // eod
 };
@@ -278,7 +270,7 @@ Q_CONSTINIT const QMetaObject ScaraRobot::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSScaraRobotENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ScaraRobot, std::true_type>,
-        // method 'proceedToNextCommand'
+        // method 'commandDone'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_zSlider_valueChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -335,16 +327,13 @@ Q_CONSTINIT const QMetaObject ScaraRobot::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_emergencyButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_loopButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_zSubButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'readSerialData'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_zSumButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'moveToNextCommand'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'sendCommandAndWait'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -355,7 +344,7 @@ void ScaraRobot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<ScaraRobot *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->proceedToNextCommand(); break;
+        case 0: _t->commandDone(); break;
         case 1: _t->on_zSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 2: _t->on_j1SubButton_clicked(); break;
         case 3: _t->on_j1SumButton_clicked(); break;
@@ -379,18 +368,16 @@ void ScaraRobot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_AcclerationSpinBox_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 22: _t->on_runButton_clicked(); break;
         case 23: _t->on_emergencyButton_clicked(); break;
-        case 24: _t->on_loopButton_clicked(); break;
-        case 25: _t->on_zSubButton_clicked(); break;
-
-        case 27: _t->on_zSumButton_clicked(); break;
-        // case 28: _t->moveToNextCommand(); break;
+        case 24: _t->on_zSubButton_clicked(); break;
+        case 25: _t->on_zSumButton_clicked(); break;
+        case 26: _t->sendCommandAndWait((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (ScaraRobot::*)();
-            if (_t _q_method = &ScaraRobot::proceedToNextCommand; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            if (_t _q_method = &ScaraRobot::commandDone; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
             }
@@ -417,19 +404,19 @@ int ScaraRobot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 29)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 29;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 29)
+        if (_id < 27)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 29;
+        _id -= 27;
     }
     return _id;
 }
 
 // SIGNAL 0
-void ScaraRobot::proceedToNextCommand()
+void ScaraRobot::commandDone()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
